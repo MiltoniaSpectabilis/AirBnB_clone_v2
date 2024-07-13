@@ -10,7 +10,6 @@ import os
 env.hosts = ['54.85.45.15', '35.175.65.117']
 env.user = 'ubuntu'
 
-
 def do_pack():
     """ generates a .tgz archive from the contents of the web_static folder """
     try:
