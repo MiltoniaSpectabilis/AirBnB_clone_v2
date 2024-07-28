@@ -55,8 +55,8 @@ def number_template(n):
     """
     Route function to display an HTML page with "Number: n" inside the H1 tag.
     """
-    if isinstance(n, int):
-        return render_template('5-number.html', number=n)
+    # if isinstance(n, int):
+    return render_template('5-number.html', number=n)
 
 
 if __name__ == '__main__':
