@@ -2,7 +2,7 @@
 """
 Flask web application that displays various messages based on the URL path.
 """
-from flask import Flask, abort
+from flask import Flask, abort, render_template
 
 app = Flask(__name__)
 
@@ -55,7 +55,8 @@ def number_template(n):
     """
     Route function to display an HTML page with "Number: n" inside the H1 tag.
     """
-    return render_template('5-number.html', number=n)
+    if isinstance(n, int):
+        return render_template('5-number.html', number=n)
 
 
 if __name__ == '__main__':
