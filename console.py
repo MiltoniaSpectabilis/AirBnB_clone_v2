@@ -143,9 +143,12 @@ class HBNBCommand(cmd.Cmd):
                     try:
                         result[key] = float(value)
                     except ValueError:
-                        result[key] = value
+                        result[key] = str(value)
                 elif value.isdigit:
-                    result[key] = int(value)
+                    try:
+                        result[key] = int(value)
+                    except ValueError:
+                        result[key] = str(value)
                 else:
                     result[key] = value
         for k, v in result.items():
