@@ -130,14 +130,7 @@ class HBNBCommand(cmd.Cmd):
             if len(parts) == 2:
                 key = parts[0].strip()
                 value = parts[1].strip().replace("_", " ").replace("\"", "")
-                if 'id' in key or key in [
-                    'name',
-                    'email',
-                    'password',
-                    'first_name',
-                    'last_name',
-                    'description'
-                ]:
+                if 'id' in key:
                     result[key] = str(value)
                 elif '.' in value:
                     try:
