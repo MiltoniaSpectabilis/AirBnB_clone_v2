@@ -140,7 +140,10 @@ class HBNBCommand(cmd.Cmd):
                 ]:
                     result[key] = str(value)
                 elif '.' in value:
-                    result[key] = float(value)
+                    try:
+                        result[key] = float(value)
+                    except ValueError:
+                        result[key] = value
                 elif value.isdigit:
                     result[key] = int(value)
                 else:
