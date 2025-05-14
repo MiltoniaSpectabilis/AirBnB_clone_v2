@@ -8,9 +8,15 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
 
-    def all(self):
+    def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
-        return FileStorage.__objects
+        if cls is None:
+            return FileStorage.__objects
+        cls_objects = {}
+        for k, v in FileStorage.__objects.items():
+            if cls.__name__ in k:
+                cls_objects[k] = v
+        return cls_objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -36,15 +42,28 @@ class FileStorage:
         from models.review import Review
 
         classes = {
-                    'BaseModel': BaseModel, 'User': User, 'Place': Place,
-                    'State': State, 'City': City, 'Amenity': Amenity,
-                    'Review': Review
-                  }
+            'BaseModel': BaseModel, 'User': User, 'Place': Place,
+            'State': State, 'City': City, 'Amenity': Amenity,
+            'Review': Review
+        }
         try:
             temp = {}
             with open(FileStorage.__file_path, 'r') as f:
                 temp = json.load(f)
                 for key, val in temp.items():
-                        self.all()[key] = classes[val['__class__']](**val)
+                    self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
+
+    def delete(self, obj=None):
+        """
+        Remove all entries from __objects that contain the given object's ID.
+        """
+        if obj is None:
+            return
+        keys_to_delete = []
+        for k in FileStorage.__objects.keys():
+            if obj.id in k:
+                keys_to_delete.append(k)
+        for k in keys_to_delete:
+            del FileStorage.__objects[k]
