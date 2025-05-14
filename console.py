@@ -134,6 +134,9 @@ class HBNBCommand(cmd.Cmd):
                     'name',
                     'email',
                     'password',
+                    'first_name',
+                    'last_name',
+                    'description'
                 ]:
                     result[key] = str(value)
                 elif '.' in value:
