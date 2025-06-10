@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
-
+This module starts a Flask web application
 """
 
 from flask import Flask
