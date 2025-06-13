@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 This module starts a flask web app with routes
 """
@@ -32,7 +32,7 @@ def python(text):
 
 @app.route("/number/<int:n>", strict_slashes=False)
 def number(n):
-    return "is a number"
+    return f"{n} is a number"
 
 
 if __name__ == "__main__":
